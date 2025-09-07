@@ -3,6 +3,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProductModule } from './product/product.module';
+import { CartModule } from './cart/cart.module';
+import { orderModule } from './order/order.module';
+import { orderProductModule } from './orderProduct.module.ts/orderProduct.module';
+import { DeliveryOptionModule } from './deliveryOption/deliveryOption.module';
 
 @Module({
   imports: [
@@ -17,6 +21,10 @@ import { ProductModule } from './product/product.module';
       autoLoadEntities: true,
     }),
     ProductModule,
+    CartModule,
+    orderModule,
+    orderProductModule,
+    DeliveryOptionModule,
   ],
 
   controllers: [AppController],

@@ -1,19 +1,4 @@
-import {
-  IsString,
-  IsNotEmpty,
-  IsArray,
-  IsNumber,
-  ValidateNested,
-} from 'class-validator';
-import { Type } from 'class-transformer';
-
-class RatingDto {
-  @IsNumber()
-  stars: number;
-
-  @IsNumber()
-  count: number;
-}
+import { IsString, IsNotEmpty, IsArray, IsNumber } from 'class-validator';
 
 export class CreateProductDto {
   @IsString()
@@ -24,9 +9,11 @@ export class CreateProductDto {
   @IsNotEmpty()
   name: string;
 
-  @ValidateNested()
-  @Type(() => RatingDto)
-  rating: RatingDto;
+  @IsNumber()
+  stars: number;
+
+  @IsNumber()
+  count: number;
 
   @IsNumber()
   priceCents: number;
