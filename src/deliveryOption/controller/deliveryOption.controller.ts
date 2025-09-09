@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Query,
+  Param,
+  Delete,
+} from '@nestjs/common';
 
 import { CreateDeliveryOptionDto } from '../dto/createDeliveryOption.dto';
 import { DeliveryOptionService } from '../service/deliveryOption.service';
@@ -13,8 +21,8 @@ export class DeliveryOptionController {
   }
 
   @Get()
-  findAll() {
-    return this.service.findAll();
+  findAll(@Query('expand') expand?: string) {
+    return this.service.findAll(expand);
   }
 
   @Get(':id')

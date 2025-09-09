@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { DeliveryOption } from '../entity/deliveryOption.entity';
 import { CreateDeliveryOptionDto } from '../dto/createDeliveryOption.dto';
+import * as dayjs from 'dayjs';
 
 @Injectable()
 export class DeliveryOptionService {
@@ -15,8 +16,15 @@ export class DeliveryOptionService {
     return this.repo.save(dto);
   }
 
-  findAll() {
-    return this.repo.find();
+  async findAll(expand?: string) {
+    const options = await this.repo.find();
+    if (expand === 'estimatedDeliveryTime') {
+      return options.map((opt) => ({
+        ...opt,
+        estimatedDeliveryTime: dayjs().add(opt.deliveryDays, 'day').valueOf(),
+      }));
+    }
+    return options;
   }
 
   findOne(id: string) {
