@@ -7,6 +7,7 @@ import { CartModule } from './cart/cart.module';
 import { orderModule } from './order/order.module';
 import { orderProductModule } from './orderProduct.module.ts/orderProduct.module';
 import { DeliveryOptionModule } from './deliveryOption/deliveryOption.module';
+import { paymentSummaryModule } from './paymentSummary/paymentSummary.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { DeliveryOptionModule } from './deliveryOption/deliveryOption.module';
     orderModule,
     orderProductModule,
     DeliveryOptionModule,
+    paymentSummaryModule,
   ],
 
   controllers: [AppController],
