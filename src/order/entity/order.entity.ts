@@ -1,9 +1,11 @@
+import { OrderProduct } from 'src/orderProduct.module.ts/entity/orderProduct.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from 'typeorm';
 
 @Entity('orders')
@@ -17,8 +19,8 @@ export class Order {
   @Column('int')
   totalCostCents: number;
 
-  @Column('jsonb')
-  products: any; // You can replace `any` with a DTO if you want stricter typing
+  @OneToMany(() => OrderProduct, (op) => op.order, { cascade: true })
+  products: OrderProduct[];
 
   @CreateDateColumn({ type: 'timestamp with time zone' })
   createdAt: Date;
