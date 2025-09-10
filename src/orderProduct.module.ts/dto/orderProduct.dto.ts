@@ -8,7 +8,6 @@ export class OrderProductDto {
   @Min(1)
   quantity: number;
 
-  @IsInt()
-  @Min(0)
-  estimatedDeliveryTimeMs: number;
+  @IsUUID()
+  deliveryOptionId: string;
 }
